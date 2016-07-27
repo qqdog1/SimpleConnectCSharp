@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{CD69854E-0E81-4298-BBA0-E374E838B5B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C1969378-D076-4D40-A012-F81F7BA4D0DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{3EB39EEB-CA67-463D-9D84-8E70266AFBFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD69854E-0E81-4298-BBA0-E374E838B5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD69854E-0E81-4298-BBA0-E374E838B5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD69854E-0E81-4298-BBA0-E374E838B5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD69854E-0E81-4298-BBA0-E374E838B5B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1969378-D076-4D40-A012-F81F7BA4D0DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1969378-D076-4D40-A012-F81F7BA4D0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1969378-D076-4D40-A012-F81F7BA4D0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1969378-D076-4D40-A012-F81F7BA4D0DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB39EEB-CA67-463D-9D84-8E70266AFBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB39EEB-CA67-463D-9D84-8E70266AFBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB39EEB-CA67-463D-9D84-8E70266AFBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB39EEB-CA67-463D-9D84-8E70266AFBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

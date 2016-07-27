@@ -1,2 +1,5 @@
 language: csharp
 solution: SimpleConnect.sln
+
+notifications:
+  slack: integrateenv:JSGldzO9SYtzzdggfncFKTXp

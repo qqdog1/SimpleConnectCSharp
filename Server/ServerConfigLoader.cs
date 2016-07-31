@@ -4,34 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.PropertiesReader;
+using Common.Constant;
 
-namespace Client
+namespace Server
 {
-    public sealed class ClientConfigLoader
+    class ServerConfigLoader
     {
-        private static readonly ClientConfigLoader instance = new ClientConfigLoader();
-        private ClientConfigLoader() { }
+        private static readonly ServerConfigLoader instance = new ServerConfigLoader();
+        private ServerConfigLoader() { }
 
         private const string SERVER_IP = "ServerIp";
 	    private const string SERVER_PORT = "ServerPort";
 	    private const string HEARTBEAT_INTERVAL = "Heartbeat-Interval";
 	    private const string HEARTBEAT_COUNT = "Heartbeat-Count";
+	
 	    private const string SENDING_QUEUE_SIZE = "SendingQueue-Size";
 	    private const string RECEIVING_QUEUE_SIZE = "ReceivingQueue-Size";
-
-        private String sConfigPath;
+	
+	    private const string ALLOW_SAME_IP_LOGIN = "AllowSameIpLogin";
+	    private const string ALLOW_SAME_IP_COUNT = "AllowSameIpCount";
+	
+	    private string sConfigPath;
 
         private Properties properties;
 
-        private String sServerIp;
+        private string sServerIp;
         private int iServerPort;
         private int iHeartbeatInterval;
         private int iHeartbeatCount;
-
         private int iSendingQueueSize;
         private int iReceivingQueueSize;
 
-        public static ClientConfigLoader Instance
+        private bool isAllowSameIpLogin = false;
+        private int iAllowSameIpCount;
+
+        public static ServerConfigLoader Instance
         {
             get
             {
@@ -41,27 +48,29 @@ namespace Client
 
         public void init(String sConfigPath)
         {
-            this.sConfigPath = sConfigPath;
-
+		    this.sConfigPath = sConfigPath;
+            
             loadProperties();
-
+        
             readServerIpfromConfig();
-
+        
             readServerPortfromConfig();
-
+            
             readHeartbeatIntervalfromConfig();
-
+            
             readHeartbeatCountfromConfig();
-
+            
             readSendingQueueSizefromConfig();
-
+            
             readReceivingQueueSizefromConfig();
+            
+            readIsAllowSameIpLoginfromConfig();
         }
 
         private void loadProperties()
         {
             properties = new Properties(sConfigPath);
-        }
+	    }
 
         private void readServerIpfromConfig()
         {
@@ -71,11 +80,10 @@ namespace Client
         private void readServerPortfromConfig()
         {
             string sServerPort = properties.getProperty(SERVER_PORT);
-		    if(sServerPort != null)
-            {
+		    if(sServerPort != null) {
                 int port;
                 bool success = Int32.TryParse(sServerPort, out port);
-                if(success)
+                if (success)
                 {
                     iServerPort = port;
                 }
@@ -98,13 +106,12 @@ namespace Client
         private void readHeartbeatCountfromConfig()
         {
             string sHeartbeatCount = properties.getProperty(HEARTBEAT_COUNT);
-            if (sHeartbeatCount != null)
-            {
-                int heartbeatCount;
-                bool success = Int32.TryParse(sHeartbeatCount, out heartbeatCount);
+		    if(sHeartbeatCount != null) {
+                int count;
+                bool success = Int32.TryParse(sHeartbeatCount, out count);
                 if (success)
                 {
-                    iHeartbeatCount = heartbeatCount;
+                    iHeartbeatCount = count;
                 }
             }
         }
@@ -131,6 +138,32 @@ namespace Client
                 if (success)
                 {
                     iReceivingQueueSize = queueSize;
+                }
+            }
+        }
+
+        private void readIsAllowSameIpLoginfromConfig()
+        {
+            string sAllowSameIpLogin = properties.getProperty(ALLOW_SAME_IP_LOGIN);
+		
+		    if(sAllowSameIpLogin != null) {
+                if (CodeConstant.YES.Equals(sAllowSameIpLogin))
+                {
+                    isAllowSameIpLogin = true;
+                    readAllowSameIpCountfromConfig();
+                }
+            }
+        }
+
+        private void readAllowSameIpCountfromConfig()
+        {
+            string sAllowSameIpCount = properties.getProperty(ALLOW_SAME_IP_COUNT);
+		    if(sAllowSameIpCount != null) {
+                int count;
+                bool success = Int32.TryParse(sAllowSameIpCount, out count);
+                if (success)
+                {
+                    iAllowSameIpCount = count;
                 }
             }
         }
@@ -163,6 +196,16 @@ namespace Client
         public int getReceivingQueueSize()
         {
             return iReceivingQueueSize;
+        }
+
+        public bool getIsAllowSameIpLogin()
+        {
+            return isAllowSameIpLogin;
+        }
+
+        public int getAllSameIpCount()
+        {
+            return iAllowSameIpCount;
         }
     }
 }

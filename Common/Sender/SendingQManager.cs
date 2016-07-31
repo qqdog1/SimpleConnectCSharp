@@ -39,7 +39,7 @@ namespace Common.Sender
             queue = new BlockingCollection<byte[]>(iQueueSize);
             bRunFlag = true;
             ThreadStart threadStart = new ThreadStart(run);
-            Thread thread = new Thread(threadStart);
+            thread = new Thread(threadStart);
             thread.Start();
         }
 

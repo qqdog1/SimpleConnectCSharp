@@ -44,6 +44,7 @@
     <Compile Include="Constant\PackerConstant.cs" />
     <Compile Include="Packer\SimpleConnectDataPacker.cs" />
     <Compile Include="Packer\Vo\PackVo.cs" />
+    <Compile Include="PropertiesReader\Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receiver\ISimpleConnectReceiver.cs" />
     <Compile Include="Receiver\ReceivingQManager.cs" />

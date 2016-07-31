@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Receiver
 {
-    interface ISimpleConnectReceiver
+    public interface ISimpleConnectReceiver
     {
         void onMessage(String sSessionId, byte[] bData);
     }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Packer.Vo
+namespace Common.Constant
 {
-    public class PackVo
+    public class REJ_Code
     {
-        public Byte OP_Code { get; set; }
-        public Byte[] Data { get; set; }
+        public static byte[] SAME_IP_FULL = Encoding.ASCII.GetBytes("1");
     }
 }

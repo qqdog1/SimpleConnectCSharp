@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Constant
 {
-    class OP_Code
+    public class OP_Code
     {
         public static byte CONFIRM = Convert.ToByte('C');
         public static byte DATA = Convert.ToByte('D');

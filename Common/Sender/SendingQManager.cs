@@ -10,7 +10,7 @@ using Common.Packer;
 
 namespace Common.Sender
 {
-    class SendingQManager
+    public class SendingQManager
     {
         private String sSenderName;
 

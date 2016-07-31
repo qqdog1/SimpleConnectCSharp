@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Common.PropertiesReader
 {
-    class Properties
+    public class Properties
     {
         private Dictionary<string, string> dictionary;
 
@@ -24,6 +24,15 @@ namespace Common.PropertiesReader
                     dictionary.Add(key, value);
                 }
             }
+        }
+
+        public string getProperty(string sKey)
+        {
+            if(dictionary.ContainsKey(sKey))
+            {
+                return dictionary[sKey];
+            }
+            return null;
         }
     }
 }

@@ -9,7 +9,7 @@ using Common.Constant;
 
 namespace Common.Packer
 {
-    class SimpleConnectDataPacker
+    public class SimpleConnectDataPacker
     {
         public static PackVo unpackingData(Socket socket)
         {

@@ -8,7 +8,7 @@ using Common.Packer.Vo;
 
 namespace Common.Receiver
 {
-    class ReceivingQManager
+    public class ReceivingQManager
     {
         private BlockingCollection<PackVo> queue;
         private int iTimeOut;

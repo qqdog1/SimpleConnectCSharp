@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Constant\OP_Code.cs" />
     <Compile Include="Constant\PackerConstant.cs" />
+    <Compile Include="Constant\REJ_Code.cs" />
     <Compile Include="Packer\SimpleConnectDataPacker.cs" />
     <Compile Include="Packer\Vo\PackVo.cs" />
     <Compile Include="PropertiesReader\Properties.cs" />
@@ -50,10 +51,7 @@
     <Compile Include="Receiver\ReceivingQManager.cs" />
     <Compile Include="Sender\SendingQManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enumeration\" />
-    <Folder Include="Exception\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

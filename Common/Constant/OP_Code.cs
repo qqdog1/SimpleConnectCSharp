@@ -8,9 +8,9 @@ namespace Common.Constant
 {
     class OP_Code
     {
-        public byte CONFIRM = Convert.ToByte('C');
-        public byte DATA = Convert.ToByte('D');
-        public byte HEARTBEAT = Convert.ToByte('H');
-        public byte REJECT = Convert.ToByte('R');
+        public static byte CONFIRM = Convert.ToByte('C');
+        public static byte DATA = Convert.ToByte('D');
+        public static byte HEARTBEAT = Convert.ToByte('H');
+        public static byte REJECT = Convert.ToByte('R');
     }
 }

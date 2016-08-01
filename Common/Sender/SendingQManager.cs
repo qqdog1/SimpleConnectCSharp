@@ -76,7 +76,13 @@ namespace Common.Sender
 
         private void send(byte[] bData)
         {
-            socket.Send(bData);
+            try
+            {
+                socket.Send(bData);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void closeSendingQThread()

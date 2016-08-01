@@ -22,7 +22,7 @@ namespace Common.Packer
                 byte[] bOP_Code = new byte[PackerConstant.OP_LENGTH];
                 byte[] bVoData = new byte[bData.Length - PackerConstant.OP_LENGTH];
                 Array.Copy(bData, 0, bOP_Code, 0, PackerConstant.OP_LENGTH);
-                Array.Copy(bData, PackerConstant.OP_LENGTH, bVoData, PackerConstant.OP_LENGTH, bVoData.Length);
+                Array.Copy(bData, PackerConstant.OP_LENGTH, bVoData, 0, bVoData.Length);
                 vo.OP_Code = bOP_Code[0];
                 vo.Data = bVoData;
             }
@@ -61,6 +61,7 @@ namespace Common.Packer
         {
             PackVo vo = new Vo.PackVo();
             vo.OP_Code = OP_Code.HEARTBEAT;
+            vo.Data = new byte[0];
             return packingData(vo);
         }
 
@@ -101,8 +102,14 @@ namespace Common.Packer
 		
 		    while(iReadTotalLength<iLength)
             {
-			    iReadLength = socket.Receive(bData, iReadLength, iLength - iReadLength, SocketFlags.None);
-			    iReadTotalLength += iReadLength;
+                try
+                {
+                    iReadLength = socket.Receive(bData, iReadLength, iLength - iReadLength, SocketFlags.None);
+                    iReadTotalLength += iReadLength;
+                } catch
+                {
+                    throw;
+                }
 		    }
 		    return bData;
 	    }
@@ -139,7 +146,7 @@ namespace Common.Packer
         {
             bData[iOffset] = vo.OP_Code;
             int iDataLength = vo.Data.Length;
-            Array.Copy(vo.Data, 0, bData, iOffset+PackerConstant.OP_LENGTH, iDataLength);
+            Array.Copy(vo.Data, 0, bData, iOffset + PackerConstant.OP_LENGTH, iDataLength);
             return bData;
         }
     }

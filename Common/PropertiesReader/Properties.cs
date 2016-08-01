@@ -13,16 +13,22 @@ namespace Common.PropertiesReader
 
         public Properties(String sFilePath)
         {
-            dictionary = new Dictionary<string, string>();
-            foreach (string line in File.ReadAllLines(sFilePath))
+            try
             {
-                if ((!string.IsNullOrEmpty(line)) && (!line.StartsWith("#")) && (line.Contains('=')))
+                dictionary = new Dictionary<string, string>();
+                foreach (string line in File.ReadAllLines(sFilePath))
                 {
-                    int index = line.IndexOf('=');
-                    string key = line.Substring(0, index).Trim();
-                    string value = line.Substring(index + 1).Trim();
-                    dictionary.Add(key, value);
+                    if ((!string.IsNullOrEmpty(line)) && (!line.StartsWith("#")) && (line.Contains('=')))
+                    {
+                        int index = line.IndexOf('=');
+                        string key = line.Substring(0, index).Trim();
+                        string value = line.Substring(index + 1).Trim();
+                        dictionary.Add(key, value);
+                    }
                 }
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
 

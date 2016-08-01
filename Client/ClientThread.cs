@@ -75,11 +75,16 @@ namespace Client
 
         private bool connectServer()
         {
-            IPHostEntry entry = Dns.GetHostEntry(configLoader.getServerIp());
-            IPEndPoint remoteEP = new IPEndPoint(entry.AddressList[0], configLoader.getServerPort());
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse(configLoader.getServerIp()), configLoader.getServerPort());
 
-            socket.Connect(remoteEP);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                socket.Connect(serverAddress);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
               
             bRunFlag = true;
             return true;
@@ -96,6 +101,7 @@ namespace Client
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     // TODO notify ap
                     bRunFlag = false;
                     disconnect();
@@ -123,7 +129,14 @@ namespace Client
 
         public bool send(byte[] bData)
         {
-            return sendingQManager.putQueue(bData);
+            try
+            {
+                return sendingQManager.putQueue(bData);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public void receiveData(byte[] bData)
@@ -159,7 +172,14 @@ namespace Client
                 sendingQManager.closeSendingQThread();
             }
             clientReceivingThread.closeReceivingThread();
-            socket.Shutdown(SocketShutdown.Both);
+            try
+            {
+                socket.Shutdown(SocketShutdown.Both);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
             socket.Close();
 
             bRunFlag = false;

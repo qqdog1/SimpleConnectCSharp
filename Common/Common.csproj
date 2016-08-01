@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constant\CodeConstant.cs" />
     <Compile Include="Constant\OP_Code.cs" />
     <Compile Include="Constant\PackerConstant.cs" />
     <Compile Include="Constant\REJ_Code.cs" />
